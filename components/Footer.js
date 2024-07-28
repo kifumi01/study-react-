@@ -1,6 +1,6 @@
 export function Footer() {
     return (
-        <div>footer</div>
+        <div>Footer</div>
         
     );
   }
