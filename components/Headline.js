@@ -5,7 +5,7 @@ import Image from "next/image";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function Headline(props) {
+export function Headline(props) {
   return (
     <div>
         <div className={styles.description}>
