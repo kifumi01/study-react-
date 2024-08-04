@@ -8,9 +8,12 @@ const inter = Inter({ subsets: ["latin"] });
 export function Headline(props) {
   return (
     <div>
+        {props.comp}
         <div className={styles.description}>
           <p>
             {props.title}
+            {props.number}
+            
           </p>
           <div>
             <a
