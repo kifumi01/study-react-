@@ -7,10 +7,8 @@ const inter = Inter({ subsets: ["latin"] });
 
 export function Main() {
   return (
-    <>
-      <main className={`${styles.main} ${inter.className}`}>  
+    <>      
         <div className={styles.center}>
-        
           <Image
             className={styles.logo}
             src="/next.svg"
@@ -20,8 +18,6 @@ export function Main() {
             priority
           />
         </div>
-
-      </main>
       </>
   );
 }
