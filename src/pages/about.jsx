@@ -1,10 +1,8 @@
 import Head from "next/head";
-import Image from "next/image";
 import { Inter } from "next/font/google";
-import styles from "@/styles/Home.module.css";
+import styles from "../styles/Home.module.css";
 import { Links }  from "../components/Links";
-import { Headline } from "@/components/Headline";
-import { Main } from "../components/Main";
+import { Main } from "../components/Main/Main";
 import { Header } from "../components/Header";
 
 const inter = Inter({ subsets: ["latin"] });
