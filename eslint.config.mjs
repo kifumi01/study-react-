@@ -13,4 +13,11 @@ export default [
     'semi': ['warn', 'always'],
     'quotes': ['warn','double']
   }
-}];
+  },
+  {"settings": {
+      "react" : {
+      "version": "detect"
+      }
+    }
+  }
+  ];
