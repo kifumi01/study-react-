@@ -4,20 +4,33 @@ import styles from "../styles/Home.module.css";
 import { Links } from "../components/Links";
 import { Main } from "../components/Main/Main";
 import { Header } from "../components/Header";
-import { useState } from "react";
+import { useCallback, useEffect,useState } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
 
   //状態の初期化
-  const [Count,setCount] = useState(1);
+  const [count,setCount] = useState(1);
   
   //状態を更新する
-  const display_console = (e) => {
-    setCount(Count =>Count +1)
-    // console.log(Count);
-  };
+  const display_console = useCallback((e) => {
+    console.log(count);
+    if(count < 10){
+      setCount(count =>count +1)
+    }
+    // console.log(count);
+  },[count]);
+
+  useEffect(() =>{
+    // console.log("foo");
+    document.body.style.backgroundColor = "lightblue"
+
+    return () => {
+      // console.log("bar");
+      document.body.style.backgroundColor = ""
+    }
+  },[count]);
 
   
   
@@ -30,7 +43,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={`${styles.main} ${inter.className}`}>
-      <h1>{Count}</h1>
+      <h1>{count}</h1>
         <button onClick={display_console}>ボタン</button>
         <Header/>
         <Main page="index" />
