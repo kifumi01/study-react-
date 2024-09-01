@@ -14,7 +14,7 @@ export default function Home() {
   const [count,setCount] = useState(1);
   
   //状態を更新する
-  const display_console = useCallback((e) => {
+  const display_console = useCallback(() => {
     console.log(count);
     if(count < 10){
       setCount(count =>count +1)
