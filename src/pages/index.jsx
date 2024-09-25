@@ -12,6 +12,9 @@ export default function Home() {
 
   //状態の初期化
   const [count,setCount] = useState(1);
+  const [text, setText] = useState("");
+  const [isShow, setIsShow] = useState(true);
+
   
   //状態を更新する
   const display_console = useCallback(() => {
@@ -21,6 +24,21 @@ export default function Home() {
     }
     // console.log(count);
   },[count]);
+
+  const handleChange = useCallback((e) => {
+    if(e.target.value.length > 5){
+      alert("5文字以内にしてください")
+      return;
+    }
+    //スペースなどを取り除く
+    setText(e.target.value.trim());
+  },[]);
+
+  const handleDisplay = useCallback(() =>{
+    setIsShow((isShow) =>{            
+      return isShow ? false : true;
+    })
+  },[])
 
   useEffect(() =>{
     // console.log("foo");
@@ -43,8 +61,10 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={`${styles.main} ${inter.className}`}>
-      <h1>{count}</h1>
+      {isShow ? <h1>{count}</h1> : null}
         <button onClick={display_console}>ボタン</button>
+        <button onClick={handleDisplay}>{isShow ? "非表示" : "表示"}</button>
+        <input type="text" value={text} onChange={handleChange}/>
         <Header/>
         <Main page="index" />
         <Links />
