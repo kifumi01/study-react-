@@ -14,13 +14,15 @@ export default function Home() {
   const [count,setCount] = useState(1);
   const [text, setText] = useState("");
   const [isShow, setIsShow] = useState(true);
+  const [array, setArray] = useState([]);
+
 
   
   //状態を更新する
   const display_console = useCallback(() => {
-    console.log(count);
-    if(count < 10){
-      setCount(count =>count +1)
+    console.log(prevCount);
+    if(prevCount < 10){
+      setCount(count =>prevCount +1)
     }
     // console.log(count);
   },[count]);
@@ -35,10 +37,22 @@ export default function Home() {
   },[]);
 
   const handleDisplay = useCallback(() =>{
-    setIsShow((isShow) =>{            
-      return isShow ? false : true;
+    setIsShow((prevIsShow) =>{            
+      return prevIsShow ? false : true;
     })
   },[])
+
+  const handleAdd = useCallback(() => {
+    setArray((prevArray) => {
+      //スプレッド構文
+      if(prevArray.some(item => item === text)){
+        alert("同じ文字列は入力不可です");
+        return prevArray;
+      }
+      const newArray = [...prevArray,text];
+      return newArray;
+    });
+  },[text]);
 
   useEffect(() =>{
     // console.log("foo");
@@ -65,6 +79,12 @@ export default function Home() {
         <button onClick={display_console}>ボタン</button>
         <button onClick={handleDisplay}>{isShow ? "非表示" : "表示"}</button>
         <input type="text" value={text} onChange={handleChange}/>
+        <ul>
+          {array.map(item => {
+            return (<li key={item}>{item}</li>)
+          })}
+        </ul>
+        <button onClick={handleAdd}>追加</button>
         <Header/>
         <Main page="index" />
         <Links />
